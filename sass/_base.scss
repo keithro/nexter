@@ -43,9 +43,4 @@ body {
     [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) // between min-content and 140px
     [center-end] minmax(6rem, 1fr) // leaves 60px margin/padding
     [full-end];
-
-  & > * {
-    padding: 40px;
-    font-size: 3rem;
-  }
 }
