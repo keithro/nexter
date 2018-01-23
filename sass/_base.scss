@@ -14,6 +14,12 @@ $color-grey-dark-2: #6D5D4B;
 $font-primary: 'Nunito', sans-serif;
 $font-display: 'Josefin Sans', sans-serif;
 
+// RESPONSIVE BREAKPOINTS
+$bp-largest: 75em; // 1200px (1200 / 16px)
+$bp-large: 62.5em; // 1000px (1000 / 16px)
+$bp-medium: 50em; // 800px (800 / 16px)
+$bp-small: 37.5em; // 600px (600 / 16px)
+
 *,
 *::before,
 *::after {
@@ -25,6 +31,10 @@ $font-display: 'Josefin Sans', sans-serif;
 html {
   box-sizing: border-box;
   font-size: 62.5%; // 1rem = 10px (10 / 16px default)
+
+  @media only screen and (max-width: $bp-largest) {
+    font-size: 50%; // 1rem = 8px
+  }
 }
 
 body {
@@ -36,6 +46,7 @@ body {
 
 .container {
   display: grid;
+  // Using named columns rather than numbered makes it easier to adjust w/ media queries
   grid-template-rows: 80vh min-content 40vw repeat(3, min-content);
   grid-template-columns: 
     [sidebar-start] 8rem
@@ -43,4 +54,20 @@ body {
     [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) // between min-content and 140px
     [center-end] minmax(6rem, 1fr) // leaves 60px margin/padding
     [full-end];
+    
+  @media only screen and (max-width: $bp-large) {
+    // adding row for sidebar
+    grid-template-rows: 6rem 80vh min-content 40vw repeat(3, min-content);
+    // removing row for sidebar
+    grid-template-columns:
+      [full-start] minmax(6rem, 1fr) // leaves 60px margin/padding
+      [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) // between min-content and 140px
+      [center-end] minmax(6rem, 1fr) // leaves 60px margin/padding
+      [full-end];
+  }
+  
+  @media only screen and (max-width: $bp-medium) {
+    // adding row for realtors and letting the rest be sized by the content
+    grid-template-rows: 6rem calc(100vh - 6rem);
+  }
 }
