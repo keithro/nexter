@@ -1,17 +1,27 @@
 .features {
   grid-column: center-start / center-end;
   margin: 15rem 0;
+
+  // Sub-grid
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-gap: 6rem;
+  align-items: start; // so items are not stretched causing the 2nd row to start too low
   
+/* 
+  // EXAMPLE OF PROGRESSIVE ENHANCEMENT
   @supports(display: grid) {
-    // Sub-grid
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
     grid-gap: 6rem;
-    align-items: start; // so items are not stretched causing the 2nd row to start too low
+    align-items: start;
   }
+   */
 }
 
 .feature {
+/* 
+  // EXAMPLE OF PROGRESSIVE ENHANCEMENT
   float: left;
   width: 33.3333%;
   margin-bottom: 6rem;
@@ -20,6 +30,7 @@
     width: auto;
     margin-bottom: 0;
   }
+ */
   display: grid;
   grid-template-columns: min-content 1fr;
   grid-row-gap: 1.5rem;
